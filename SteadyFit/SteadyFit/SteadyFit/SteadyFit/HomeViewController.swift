@@ -20,7 +20,6 @@ import MapKit
 import CoreLocation
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate{
-    var myindex = 0;
     var locationManager = CLLocationManager()
     let homeTableSections = ["Activity Tracker", "Events"]
     let homeTableContents = [ ["Histogram"] , ["Event A", "Event B", "Event C"]]
@@ -29,6 +28,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var city: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableView.tableFooterView = UIView(frame: .zero)
@@ -83,13 +84,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last!
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
+    }
     func sendText() {
         let composeVC = MFMessageComposeViewController()
         if(CLLocationManager.locationServicesEnabled()){
             locationManager.startUpdatingLocation()
-            let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
-             composeVC.body = "I need help! This is my current location: " + "http://maps.google.com/maps?q=\(locValue.latitude),\(locValue.longitude)&ll=\(locValue.latitude),\(locValue.longitude)&z=17"
+           // let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
+             composeVC.body = "I need help! This is my current location: " + "http://maps.google.com/maps?q=\(latitude),\(longitude)&ll=\(latitude),\(longitude)&z=17"
         }
         else{
             composeVC.body = "I need help!"

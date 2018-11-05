@@ -41,7 +41,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "settingNavigation" , sender: titleNameArr[indexPath.row])
+        if indexPath.row == 0 {
+             performSegue(withIdentifier: "Exit" , sender: titleNameArr[indexPath.row])
+        }
+        else{
+             performSegue(withIdentifier: "settingNavigation" , sender: titleNameArr[indexPath.row])
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {

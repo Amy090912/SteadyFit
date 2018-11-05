@@ -34,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOa-oJ-p6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="922" y="627"/>
+            <point key="canvasLocation" x="967" y="1110"/>
         </scene>
         <!--Settings-->
         <scene sceneID="yfg-Yy-hoT">
@@ -112,7 +112,6 @@
                                             <outlet property="detailInfo" destination="ZSI-JX-oqG" id="fmd-hy-0zG"/>
                                             <outlet property="imageIcon" destination="fdk-QL-h9w" id="QDe-79-HyK"/>
                                             <outlet property="titleName" destination="oVt-wV-iGP" id="hYc-cE-U4D"/>
-                                            <segue destination="JHu-S5-a6R" kind="show" identifier="settingNavigation" trigger="accessoryAction" id="m21-OZ-L1I"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -146,10 +145,43 @@
                         <viewLayoutGuide key="safeArea" id="VMJ-j9-jjX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="5Ew-ee-Zpk"/>
+                    <connections>
+                        <segue destination="X0g-e5-Jb8" kind="show" identifier="Exit" id="h1i-yk-cmG"/>
+                        <segue destination="JHu-S5-a6R" kind="show" identifier="settingNavigation" id="P7Z-iL-Myx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDI-We-fzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="79.710144927536234" y="626.11607142857144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="smT-Xc-urG">
+            <objects>
+                <viewController id="X0g-e5-Jb8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wg1-uA-JBJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvf-sl-CVH">
+                                <rect key="frame" x="151" y="274" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out "/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WIP: logout function doesntwork yet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWV-XT-ScY">
+                                <rect key="frame" x="68" y="394" width="278" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I7M-j5-P78"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AP3-9D-cnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="997.10144927536237" y="415.84821428571428"/>
         </scene>
     </scenes>
     <resources>
