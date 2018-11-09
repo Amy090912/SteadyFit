@@ -16,6 +16,9 @@
 import UIKit
 import MessageUI
 import CoreLocation
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class GroupProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate {
     
@@ -28,7 +31,12 @@ class GroupProfileViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var eventTableView: UITableView!
     
     @IBAction func emergencyButton(_ sender: UIButton) {sendText()}
+    var ref:DatabaseReference? = Database.database().reference()
+    var refHandle:DatabaseHandle?
+    var getDescriptionHandle:DatabaseHandle?
+    var getEventsHandle:DatabaseHandle?
     var locationManager = CLLocationManager()
+    var groupText : String!
     var groupTableSections = ["Members", "Events"]
     var groupTableContents = [["More"], ["A Event on Jan 1, 2018", "B Event on Feb 1, 2018", "C Event on Mar 1, 2018"]]
     
@@ -36,12 +44,33 @@ class GroupProfileViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         eventTableView.delegate = self
         eventTableView.dataSource = self
+        
+        var groupID : Int
+        
+        let currentuserID = Auth.auth().currentUser?.uid
+        refHandle = self.ref?.child("Users").child(currentuserID!).child("Groups").observe(DataEventType.value, with: { (snapshot) in
+        
+            var groupNamesArr = [String]()
+            for groupNames in snapshot.children.allObjects as! [DataSnapshot] {
+                //groupNamesArr = groupNames.components(separatedBy: "\"")
+                //if (groupNamesArr[1] == self.groupText){
+                    // set groupID to the groupID of thise group
+                //}
+            }
+        })
+        
+        let groupTextArr = groupText.components(separatedBy: " ")
+        
         groupDesc.text = "Group Description:"
-        groupDescInfo.text = "(Group Description)"
+        groupDescInfo.text = groupText
         activityLevel.text = "Activity Level:"
-        activityLevelInfo.text = "(Activity Level)"
+        if (groupTextArr.count == 4) {
+            activityLevelInfo.text = groupTextArr[3]
+        } else {
+            activityLevelInfo.text = groupTextArr[3] + " " + groupTextArr[4]
+        }
         groupStatus.text = "Group Status:"
-        groupStatusInfo.text = "(Group Status)"
+        groupStatusInfo.text = groupTextArr[0]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

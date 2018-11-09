@@ -171,10 +171,12 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
         case 0:
             let destination = segue.destination as! GroupProfileViewController
             destination.navigationItem.title = myGroups[indexPath.row]
+            destination.groupText = myGroups[indexPath.row]
             break
         case 1:
             let destination = segue.destination as! GroupProfileViewController
             destination.navigationItem.title = suggestedGroups[indexPath.row]
+            destination.groupText = suggestedGroups[indexPath.row]
             break
         default:
             break

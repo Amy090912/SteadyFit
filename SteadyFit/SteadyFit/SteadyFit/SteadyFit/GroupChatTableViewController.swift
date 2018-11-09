@@ -167,7 +167,8 @@ class GroupChatTableViewController: UICollectionViewController, UITextFieldDeleg
         let sendButton = UIButton(type: .system)
         sendButton.setTitle("Send", for: .normal)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.addTarget(self, action: #selector(sendAction), for: UIControl.Event.touchUpInside)
+        //sendButton.addTarget(self, action: #selector(sendAction), for: UIControl.Event.touchUpInside) //Xcode 10
+        sendButton.addTarget(self, action: #selector(sendAction), for: UIControlEvents.touchUpInside) //Xcode 9
         containerView.addSubview(sendButton)
         sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         sendButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
